@@ -1,5 +1,5 @@
 package blackjack;
 
-public class Dealer implements Player{
+public class Dealer extends Player{
 
 }
