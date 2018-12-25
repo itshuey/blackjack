@@ -2,20 +2,29 @@ package blackjack;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Deck {
 	
-	private ArrayList<Card> cards;
+	private List<Card> cards;
 	private int numDecks;
 	private int pointer;
 	
+	/**
+	 * Default constructor assumes one deck
+	 */
 	public Deck() {
 		this(1);
 	}
 	
+	/**
+	 * Creates our list of cards from numDecks decks
+	 * 
+	 * @param numDecks
+	 */
 	public Deck(int numDecks) {
 		pointer = 0;
-		numDecks = 1;
+		this.numDecks = numDecks;
 
 		cards = new ArrayList<Card>();
 		for (int i=0; i<numDecks; i++) {
@@ -27,13 +36,17 @@ public class Deck {
 		}
 	}
 	
+	/**
+	 * Uses default implementation of shuffle
+	 */
 	public void shuffle() {
 		Collections.shuffle(cards);
+		// reset pointer
 		pointer = 0;
 	}
 	
 	public Card deal() {
-		// shuffle
+		// if we're getting too far, shuffle
 		if (pointer > cards.size()/2) shuffle();
 		return cards.get(pointer++);
 	}
